@@ -1,0 +1,378 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>dgboy | Portafolio Musical Oficial</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Syncopate:wght@400;700&family=Inter:wght@300;400;600&display=swap');
+
+        :root {
+            --primary: #00f2ff;
+            --secondary: #7000ff;
+            --bg: #050505;
+        }
+
+        body {
+            background-color: var(--bg);
+            color: white;
+            font-family: 'Inter', sans-serif;
+            scroll-behavior: smooth;
+        }
+
+        .logo-font {
+            font-family: 'Syncopate', sans-serif;
+            letter-spacing: -2px;
+            text-transform: uppercase;
+        }
+
+        .glass-card {
+            background: rgba(255, 255, 255, 0.03);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 20px;
+        }
+
+        .glow-text {
+            text-shadow: 0 0 20px rgba(0, 242, 255, 0.5);
+        }
+
+        .hero-gradient {
+            background: radial-gradient(circle at center, rgba(112, 0, 255, 0.15) 0%, transparent 70%);
+        }
+
+        .track-row:hover {
+            background: rgba(255, 255, 255, 0.05);
+        }
+
+        .animate-float {
+            animation: float 6s ease-in-out infinite;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-20px); }
+        }
+
+        .custom-player-bar {
+            height: 6px;
+            background: #222;
+            border-radius: 3px;
+            overflow: hidden;
+            position: relative;
+            cursor: pointer;
+        }
+
+        .progress-fill {
+            height: 100%;
+            background: linear-gradient(90deg, var(--primary), var(--secondary));
+            width: 0%;
+            transition: width 0.1s linear;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Navegación -->
+    <nav class="fixed w-full z-50 px-6 py-4 flex justify-between items-center bg-black/50 backdrop-blur-md border-b border-white/10">
+        <div class="logo-font text-2xl font-bold tracking-tighter glow-text">
+            dgboy<span class="text-[#00f2ff]">.</span>
+        </div>
+        <div class="hidden md:flex space-x-8 text-sm uppercase tracking-widest font-medium">
+            <a href="#home" class="hover:text-[#00f2ff] transition">Inicio</a>
+            <a href="#music" class="hover:text-[#00f2ff] transition">Proyectos</a>
+            <a href="#about" class="hover:text-[#00f2ff] transition">Sobre Mí</a>
+        </div>
+        <div class="flex space-x-4">
+            <a href="https://www.instagram.com/dgboy_12?igsh=ZndlMHVhb2Rmd2Vt" target="_blank" class="text-xl hover:text-cyan-400 transition" title="Instagram de Daniel Gabriel">
+                <i class="fab fa-instagram"></i>
+            </a>
+            <a href="https://www.youtube.com/@dgboy_12" target="_blank" class="text-xl hover:text-red-500 transition" title="YouTube dgboy12">
+                <i class="fab fa-youtube"></i>
+            </a>
+        </div>
+    </nav>
+
+    <!-- Sección Hero -->
+    <section id="home" class="relative min-h-screen flex items-center justify-center overflow-hidden hero-gradient pt-20">
+        <div class="absolute inset-0 opacity-20 pointer-events-none">
+            <div class="absolute top-1/4 left-1/4 w-96 h-96 bg-purple-600 rounded-full blur-[120px]"></div>
+            <div class="absolute bottom-1/4 right-1/4 w-96 h-96 bg-cyan-600 rounded-full blur-[120px]"></div>
+        </div>
+
+        <div class="container mx-auto px-6 text-center z-10">
+            <h1 class="logo-font text-7xl md:text-9xl font-bold mb-4 animate-float">
+                dgboy
+            </h1>
+            <p class="text-xl md:text-2xl text-gray-400 font-light mb-8 max-w-3xl mx-auto italic">
+                Producción musical y composición desde 0.
+            </p>
+            <div class="flex flex-col md:flex-row justify-center gap-4">
+                <a href="#music" class="bg-[#00f2ff] text-black px-8 py-4 rounded-full font-bold uppercase tracking-widest hover:scale-105 transition transform">
+                    Explorar Música
+                </a>
+                <a href="#about" class="border border-white/20 hover:bg-white/10 px-8 py-4 rounded-full font-bold uppercase tracking-widest transition">
+                    Conoce a Daniel
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Sección Reproductor de Música -->
+    <section id="music" class="py-24 bg-black">
+        <div class="container mx-auto px-6">
+            <div class="mb-12">
+                <h2 class="text-4xl font-bold logo-font mb-2">Proyectos creados</h2>
+                <p class="text-gray-500">Selecciona una pista para iniciar la reproducción.</p>
+            </div>
+
+            <div class="grid lg:grid-cols-2 gap-12">
+                <!-- Lista de Pistas -->
+                <div class="glass-card p-8">
+                    <div class="space-y-4">
+                        <!-- Pista 1 -->
+                        <div class="track-row p-4 flex items-center justify-between rounded-xl transition cursor-pointer group" 
+                             onclick="playTrack('Por Venezuela', 'dgboy.12 x Cesarvid', 'Por venezuela - dgboy.12 x cersavid.mp3')">
+                            <div class="flex items-center space-x-4">
+                                <span class="text-gray-600 font-mono">01</span>
+                                <div class="w-12 h-12 bg-gradient-to-br from-yellow-500 via-blue-500 to-red-500 rounded-lg flex items-center justify-center">
+                                    <i class="fas fa-play text-white group-hover:scale-110 transition"></i>
+                                </div>
+                                <div>
+                                    <h4 class="font-bold">Por Venezuela</h4>
+                                    <p class="text-xs text-gray-500 uppercase italic">Colab. con Cesarvid</p>
+                                </div>
+                            </div>
+                            <span class="text-gray-500 font-mono text-sm">Escuchar</span>
+                        </div>
+
+                        <!-- Pista 2 -->
+                        <div class="track-row p-4 flex items-center justify-between rounded-xl transition cursor-pointer group" 
+                             onclick="playTrack('Trap wave', 'dgboy.12', 'sape - dgboy.12.mp3')">
+                            <div class="flex items-center space-x-4">
+                                <span class="text-gray-600 font-mono">02</span>
+                                <div class="w-12 h-12 bg-gradient-to-br from-cyan-500 to-blue-600 rounded-lg flex items-center justify-center">
+                                    <i class="fas fa-play text-white group-hover:scale-110 transition"></i>
+                                </div>
+                                <div>
+                                    <h4 class="font-bold">Trap wave</h4>
+                                    <p class="text-xs text-gray-500 uppercase italic">Original Mix</p>
+                                </div>
+                            </div>
+                            <span class="text-gray-500 font-mono text-sm">Escuchar</span>
+                        </div>
+
+                        <!-- Pista 3 -->
+                        <div class="track-row p-4 flex items-center justify-between rounded-xl transition cursor-pointer group" 
+                             onclick="playTrack('Inuphonk', 'dgboy.12', 'inupikirilio - dgboy.12.m4a')">
+                            <div class="flex items-center space-x-4">
+                                <span class="text-gray-600 font-mono">03</span>
+                                <div class="w-12 h-12 bg-gradient-to-br from-purple-500 to-pink-600 rounded-lg flex items-center justify-center">
+                                    <i class="fas fa-play text-white group-hover:scale-110 transition"></i>
+                                </div>
+                                <div>
+                                    <h4 class="font-bold">Inuphonk</h4>
+                                    <p class="text-xs text-gray-500 uppercase italic">Experimental Beat</p>
+                                </div>
+                            </div>
+                            <span class="text-gray-500 font-mono text-sm">Escuchar</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Visualizador del Reproductor Activo -->
+                <div class="glass-card p-8 flex flex-col justify-center items-center text-center relative overflow-hidden">
+                    <div id="player-visualizer" class="mb-6 w-48 h-48 rounded-full border-4 border-cyan-500/30 flex items-center justify-center relative">
+                        <div id="visualizer-spin" class="absolute inset-0 rounded-full border-t-4 border-cyan-400 hidden"></div>
+                        <i class="fas fa-compact-disc text-6xl text-cyan-400" id="disc-icon"></i>
+                    </div>
+                    <h3 id="current-title" class="text-2xl font-bold mb-1">Reproductor</h3>
+                    <p id="current-artist" class="text-gray-500 mb-6 uppercase tracking-widest text-sm">Daniel - dgboy</p>
+                    
+                    <div class="w-full max-w-sm">
+                        <div class="flex justify-between text-xs text-gray-500 mb-2">
+                            <span id="curr-time">0:00</span>
+                            <span id="total-time">0:00</span>
+                        </div>
+                        <div class="custom-player-bar mb-6" id="progress-bar-container">
+                            <div id="progress-fill" class="progress-fill"></div>
+                        </div>
+                        <div class="flex items-center justify-center space-x-8">
+                            <button class="text-xl hover:text-cyan-400 transition" onclick="rewind()"><i class="fas fa-undo"></i></button>
+                            <button id="main-play-btn" class="w-16 h-16 bg-white text-black rounded-full flex items-center justify-center text-2xl hover:bg-cyan-400 transition shadow-lg shadow-cyan-500/20" onclick="togglePlay()">
+                                <i class="fas fa-play" id="play-icon"></i>
+                            </button>
+                            <button class="text-xl hover:text-cyan-400 transition" onclick="forward()"><i class="fas fa-redo"></i></button>
+                        </div>
+                    </div>
+                    <p id="error-display" class="hidden text-red-500 text-xs mt-4 font-medium"></p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+    <!-- Sección Sobre Mí -->
+    <section id="about" class="py-24 relative overflow-hidden">
+        <div class="container mx-auto px-6">
+            <div class="grid md:grid-cols-2 gap-16 items-center">
+                <div class="relative">
+                    <div class="aspect-square bg-neutral-900 rounded-3xl overflow-hidden border border-white/10 relative group">
+                        <!-- Imagen actualizada con el archivo subido por el usuario -->
+                        <img src="foto daniel" alt="Daniel Gabriel - dgboy" class="w-full h-full object-cover grayscale hover:grayscale-0 transition duration-700">
+                        <div class="absolute inset-0 bg-gradient-to-t from-black via-transparent to-transparent opacity-60"></div>
+                        <div class="absolute bottom-6 left-6">
+                            <h3 class="logo-font text-2xl">Daniel Rivas</h3>
+                            <p class="text-cyan-400 text-sm font-bold uppercase tracking-widest">Producer & Musician</p>
+                        </div>
+                    </div>
+                </div>
+                <div>
+                    <h2 class="text-5xl font-bold logo-font mb-8">Daniel <span class="text-cyan-400">Rivas</span></h2>
+                    <p class="text-gray-300 text-lg mb-6 leading-relaxed">
+                        Soy Daniel, estudiante de producción musical con más de cuatro años de experiencia dedicados a la creación y composición musical. Mi pasión por el sonido me ha llevado a dominar diversos instrumentos, incluyendo la percusión general, batería, guitarra y piano.
+                    </p>
+                    <p class="text-gray-300 text-lg mb-8 leading-relaxed">
+                        Colaboro estrechamente con el cantante y compositor <strong>Cesarvid</strong>. Juntos, hemos desarrollado proyectos desde sus etapas iniciales de maquetación hasta producciones más elaboradas, combinando mi creación de beats con su experiencia en instrumentos como la guitarra.
+                    </p>
+                    
+                    <div class="grid grid-cols-2 gap-6">
+                        <div class="glass-card p-6 border-l-4 border-cyan-400">
+                            <div class="text-3xl font-bold">4+</div>
+                            <div class="text-xs text-gray-500 uppercase mt-1">Años de Trayectoria</div>
+                        </div>
+                        <div class="glass-card p-6 border-l-4 border-purple-500">
+                            <div class="text-3xl font-bold">Duo</div>
+                            <div class="text-xs text-gray-500 uppercase mt-1">dgboy x Cesarvid</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Pie de Página -->
+    <footer class="py-12 border-t border-white/10 bg-black">
+        <div class="container mx-auto px-6 flex flex-col md:flex-row justify-between items-center gap-8">
+            <div class="logo-font text-2xl font-bold tracking-tighter">dgboy</div>
+            <p class="text-gray-600 text-xs uppercase tracking-widest">© 2026 Dgboy Producciones. San Antonio de Los Altos, Venezuela.</p>
+        </div>
+    </footer>
+
+    <!-- Motor de Audio -->
+    <audio id="main-audio" preload="auto"></audio>
+
+    <script>
+        const audio = document.getElementById('main-audio');
+        const playIcon = document.getElementById('play-icon');
+        const currentTitle = document.getElementById('current-title');
+        const currentArtist = document.getElementById('current-artist');
+        const progressFill = document.getElementById('progress-fill');
+        const currTimeText = document.getElementById('curr-time');
+        const totalTimeText = document.getElementById('total-time');
+        const spinVisualizer = document.getElementById('visualizer-spin');
+        const discIcon = document.getElementById('disc-icon');
+        const progressBarContainer = document.getElementById('progress-bar-container');
+        const errorDisplay = document.getElementById('error-display');
+
+        async function playTrack(title, artist, fileName) {
+            errorDisplay.classList.add('hidden');
+            currentTitle.innerText = title;
+            currentArtist.innerText = artist;
+            
+            // Limpiar fuente anterior y detener reproducción
+            audio.pause();
+            audio.removeAttribute('src'); 
+            audio.load();
+
+            // Usar la ruta relativa directa
+            audio.src = fileName;
+            console.log("Intentando cargar:", fileName);
+
+            try {
+                // Esperar a que el navegador valide que puede reproducir la fuente
+                await new Promise((resolve, reject) => {
+                    const canPlay = () => {
+                        audio.removeEventListener('canplay', canPlay);
+                        audio.removeEventListener('error', handleError);
+                        resolve();
+                    };
+                    const handleError = () => {
+                        audio.removeEventListener('canplay', canPlay);
+                        audio.removeEventListener('error', handleError);
+                        reject(new Error("No se pudo cargar la fuente de audio"));
+                    };
+                    audio.addEventListener('canplay', canPlay);
+                    audio.addEventListener('error', handleError);
+                    audio.load();
+                });
+
+                await audio.play();
+                updateUI(true);
+            } catch (e) {
+                console.error("Fallo de reproducción:", e);
+                errorDisplay.innerText = "Error de carga. Intenta hacer clic de nuevo.";
+                errorDisplay.classList.remove('hidden');
+                updateUI(false);
+            }
+        }
+
+        function togglePlay() {
+            if (!audio.src) return;
+            if (audio.paused) {
+                audio.play().then(() => updateUI(true)).catch(e => {
+                    console.error("Error al reanudar:", e);
+                    errorDisplay.classList.remove('hidden');
+                });
+            } else {
+                audio.pause();
+                updateUI(false);
+            }
+        }
+
+        function updateUI(playing) {
+            if (playing) {
+                playIcon.className = 'fas fa-pause';
+                spinVisualizer.classList.remove('hidden');
+                spinVisualizer.classList.add('animate-spin');
+                discIcon.classList.add('animate-pulse', 'text-cyan-400');
+            } else {
+                playIcon.className = 'fas fa-play';
+                spinVisualizer.classList.add('hidden');
+                spinVisualizer.classList.remove('animate-spin');
+                discIcon.classList.remove('animate-pulse', 'text-cyan-400');
+            }
+        }
+
+        audio.ontimeupdate = () => {
+            if (audio.duration) {
+                const progress = (audio.currentTime / audio.duration) * 100;
+                progressFill.style.width = `${progress}%`;
+                currTimeText.innerText = formatTime(audio.currentTime);
+                totalTimeText.innerText = formatTime(audio.duration);
+            }
+        };
+
+        progressBarContainer.onclick = (e) => {
+            if (!audio.duration) return;
+            const width = progressBarContainer.clientWidth;
+            const clickX = e.offsetX;
+            audio.currentTime = (clickX / width) * audio.duration;
+        };
+
+        function formatTime(seconds) {
+            if (isNaN(seconds)) return '0:00';
+            const mins = Math.floor(seconds / 60);
+            const secs = Math.floor(seconds % 60);
+            return `${mins}:${secs < 10 ? '0' : ''}${secs}`;
+        }
+
+        function rewind() { if(audio.src) audio.currentTime = Math.max(0, audio.currentTime - 10); }
+        function forward() { if(audio.src) audio.currentTime = Math.min(audio.duration, audio.currentTime + 10); }
+
+        audio.onended = () => updateUI(false);
+    </script>
+</body>
+</html>
